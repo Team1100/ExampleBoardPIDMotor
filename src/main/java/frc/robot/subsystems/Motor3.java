@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.TestingDashboard;
@@ -24,6 +25,7 @@ public class Motor3 extends SubsystemBase {
   private Motor3() {
     m_motor = new VictorSP(RobotMap.M3_Motor);
     encoder = new Encoder(RobotMap.M3_EncoderA, RobotMap.M3_EncoderB);
+    encoder.setDistancePerPulse(1/2048);
   }
 
   public static Motor3 getInstance() {
@@ -38,8 +40,13 @@ public class Motor3 extends SubsystemBase {
     m_motor.set(speed);
   }
 
+  public double getSpeed() {
+    return encoder.getRate();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Motor3", encoder.getRate());
   }
 }

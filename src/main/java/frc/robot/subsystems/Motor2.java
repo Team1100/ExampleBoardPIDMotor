@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.TestingDashboard;
@@ -26,6 +27,7 @@ public class Motor2 extends SubsystemBase {
   private Motor2() {
     m_motor = new Talon(RobotMap.M2_Motor);
     encoder = new Encoder(RobotMap.M2_EncoderA, RobotMap.M2_EncoderB);
+    encoder.setDistancePerPulse(1/2048);
   }
 
   public static Motor2 getInstance() {
@@ -40,8 +42,13 @@ public class Motor2 extends SubsystemBase {
     m_motor.set(speed);
   }
 
+  public double getSpeed() {
+    return encoder.getRate();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Motor2", encoder.getRate());
   }
 }
