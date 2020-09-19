@@ -9,10 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.PidMotor;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Motor;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -27,16 +25,32 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private Motor m_motor;
-  private PidMotor m_pidMotor;
+  private Motor1 m_motor1;
+  private Motor2 m_motor2;
+  private Motor3 m_motor3;
+  private TestMotor1 m_testMotor1;
+  private TestMotor2 m_testMotor2;
+  private TestMotor3 m_testMotor3;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    m_motor = Motor.getInstance();
-    m_pidMotor = new PidMotor();
-    m_motor.setDefaultCommand(m_pidMotor);
+    m_motor1 = Motor1.getInstance();
+    m_motor2 = Motor2.getInstance();
+    m_motor3 = Motor3.getInstance();
+    m_testMotor1 = new TestMotor1();
+    m_testMotor2 = new TestMotor2();
+    m_testMotor3 = new TestMotor3();
+    
+    // Register Commands with Testing Dashboard
+    TestMotor1.registerWithTestingDashboard();
+    TestMotor2.registerWithTestingDashboard();
+    TestMotor3.registerWithTestingDashboard();
+
+    // Create Testing Dashboard
+    TestingDashboard.getInstance().createTestingDashboard();
+
     // Configure the button bindings
     configureButtonBindings();
   }
