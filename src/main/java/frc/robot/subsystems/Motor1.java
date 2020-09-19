@@ -7,21 +7,21 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.TestingDashboard;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Motor1 extends SubsystemBase {
   private static Motor1 m_motor1;
-  private WPI_TalonSRX m_motor;
+  private Talon m_motor;
 
   /**
    * Creates a new Motor1.
    */
   private Motor1() {
-    m_motor = new WPI_TalonSRX(RobotMap.M2_Motor);
+    m_motor = new Talon(RobotMap.M2_Motor);
   }
 
   public static Motor1 getInstance() {
@@ -30,6 +30,10 @@ public class Motor1 extends SubsystemBase {
       TestingDashboard.getInstance().registerSubsystem(m_motor1, "Motor1");
     }
     return m_motor1;
+  }
+
+  public void spin(double speed) {
+    m_motor.set(speed);
   }
 
   @Override

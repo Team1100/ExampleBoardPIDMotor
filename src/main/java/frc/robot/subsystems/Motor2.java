@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.TestingDashboard;
@@ -16,14 +17,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Motor2 extends SubsystemBase {
   private static Motor2 m_motor2;
-  WPI_TalonSRX m_motor;
+ Talon m_motor;
   private Encoder encoder;
   
   /**
    * Creates a new Motor2.
    */
   private Motor2() {
-    m_motor = new WPI_TalonSRX(RobotMap.M2_Motor);
+    m_motor = new Talon(RobotMap.M2_Motor);
     encoder = new Encoder(RobotMap.M2_EncoderA, RobotMap.M2_EncoderB);
   }
 
@@ -33,6 +34,10 @@ public class Motor2 extends SubsystemBase {
       TestingDashboard.getInstance().registerSubsystem(m_motor2, "Motor2");
     }
     return m_motor2;
+  }
+
+  public void spin(double speed) {
+    m_motor.set(speed);
   }
 
   @Override

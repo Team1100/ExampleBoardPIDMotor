@@ -34,6 +34,10 @@ public class Motor3 extends SubsystemBase {
     return m_motor3;
   }
 
+  public void spin(double speed) {
+    m_motor.set(speed);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
