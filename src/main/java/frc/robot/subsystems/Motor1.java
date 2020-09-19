@@ -21,7 +21,7 @@ public class Motor1 extends SubsystemBase {
    * Creates a new Motor1.
    */
   private Motor1() {
-    m_motor = new Talon(RobotMap.M2_Motor);
+    m_motor = new Talon(RobotMap.M1_Motor);
   }
 
   public static Motor1 getInstance() {
