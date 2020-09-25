@@ -25,7 +25,7 @@ public class Motor3 extends SubsystemBase {
   private Motor3() {
     m_motor = new VictorSP(RobotMap.M3_Motor);
     encoder = new Encoder(RobotMap.M3_EncoderA, RobotMap.M3_EncoderB);
-    encoder.setDistancePerPulse(1/2048);
+    encoder.setDistancePerPulse((double)1/(double)2048);
   }
 
   public static Motor3 getInstance() {
