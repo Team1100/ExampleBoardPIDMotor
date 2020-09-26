@@ -18,7 +18,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Motor2 extends SubsystemBase {
   private static Motor2 m_motor2;
- Talon m_motor;
+  Talon m_motor;
+  private double inputSpeed;
   private Encoder encoder;
   
   /**
@@ -39,7 +40,10 @@ public class Motor2 extends SubsystemBase {
   }
 
   public void spin(double speed) {
-    m_motor.set(speed);
+    inputSpeed = speed;
+    m_motor.set(inputSpeed);
+    
+    
   }
 
   public double getSpeed() {
@@ -49,6 +53,7 @@ public class Motor2 extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Motor2", encoder.getRate());
+    SmartDashboard.putNumber("Motor2Output", encoder.getRate());
+    SmartDashboard.putNumber("Motor2Input", inputSpeed);
   }
 }

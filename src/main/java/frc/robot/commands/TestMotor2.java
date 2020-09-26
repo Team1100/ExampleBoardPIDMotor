@@ -10,15 +10,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.TestingDashboard;
 import frc.robot.subsystems.Motor2;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TestMotor2 extends CommandBase {
   Motor2 motor;
+  private double inputSpeed;
+  private Timer timer;
+  private double period;
   /**
    * Creates a new TestMotor2.
    */
   public TestMotor2() {
     // Use addRequirements() here to declare subsystem dependencies.
     motor = Motor2.getInstance();
+    timer = new Timer();
     addRequirements(motor);
   }
 
@@ -31,12 +37,19 @@ public class TestMotor2 extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    motor.spin(0.5);
+    inputSpeed = -1;
+    timer.start();
+    period = SmartDashboard.getNumber("motorPeriod", 1.0);
+    motor.spin(inputSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (timer.hasPeriodPassed(period)) {
+      inputSpeed += 0.1;
+      motor.spin(inputSpeed);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -48,6 +61,7 @@ public class TestMotor2 extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    boolean finished = inputSpeed == 1.0;
+    return finished;
   }
 }

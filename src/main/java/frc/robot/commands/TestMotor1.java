@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.TestingDashboard;
 import frc.robot.subsystems.Motor1;
 
+
 public class TestMotor1 extends CommandBase {
   Motor1 motor;
   /**
@@ -28,6 +29,7 @@ public class TestMotor1 extends CommandBase {
     TestingDashboard.getInstance().registerCommand(motor1, "Basic", cmd);
   }
 
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -37,6 +39,7 @@ public class TestMotor1 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
   }
 
   // Called once the command ends or is interrupted.
