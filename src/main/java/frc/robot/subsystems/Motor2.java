@@ -28,7 +28,7 @@ public class Motor2 extends SubsystemBase {
   private Motor2() {
     m_motor = new Talon(RobotMap.M2_Motor);
     encoder = new Encoder(RobotMap.M2_EncoderA, RobotMap.M2_EncoderB);
-    encoder.setDistancePerPulse(1/2048);
+    encoder.setDistancePerPulse((double)1/(double)2048);
   }
 
   public static Motor2 getInstance() {
