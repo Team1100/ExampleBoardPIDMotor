@@ -21,6 +21,7 @@ public class Motor2 extends SubsystemBase {
   Talon m_motor;
   private double inputSpeed;
   private Encoder encoder;
+
   
   /**
    * Creates a new Motor2.
@@ -42,8 +43,17 @@ public class Motor2 extends SubsystemBase {
   public void spin(double speed) {
     inputSpeed = speed;
     m_motor.set(inputSpeed);
-    
-    
+  }
+
+  public void changeSpeed(double delta) {
+    if (inputSpeed + delta > 1) {
+      inputSpeed = 1;
+    } else if (inputSpeed + delta < -1) {
+      inputSpeed = -1;
+    }
+    else {
+      inputSpeed = inputSpeed + delta;
+    }
   }
 
   public double getSpeed() {
