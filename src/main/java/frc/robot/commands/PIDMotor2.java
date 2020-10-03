@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.Motor2;
+import frc.robot.TestingDashboard;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -42,6 +43,12 @@ public class PIDMotor2 extends PIDCommand {
     addRequirements(Motor2.getInstance());
     // Configure additional PID options by calling `getController` here.
     getController().setTolerance(5);
+  }
+
+  public static void registerWithTestingDashboard() {
+    Motor2 motor2 = Motor2.getInstance();
+    PIDMotor2 cmd = new PIDMotor2();
+    TestingDashboard.getInstance().registerCommand(motor2, "Basic", cmd);
   }
 
   // Returns true when the command should end.

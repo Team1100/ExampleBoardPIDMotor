@@ -31,6 +31,7 @@ public class RobotContainer {
   private TestMotor1 m_testMotor1;
   private TestMotor2 m_testMotor2;
   private TestMotor3 m_testMotor3;
+  private PIDMotor2 m_pidMotor2;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -42,11 +43,13 @@ public class RobotContainer {
     m_testMotor1 = new TestMotor1();
     m_testMotor2 = new TestMotor2();
     m_testMotor3 = new TestMotor3();
+    m_pidMotor2 = new PIDMotor2();
     
     // Register Commands with Testing Dashboard
     TestMotor1.registerWithTestingDashboard();
     TestMotor2.registerWithTestingDashboard();
     TestMotor3.registerWithTestingDashboard();
+    PIDMotor2.registerWithTestingDashboard();
 
     // Create Testing Dashboard
     TestingDashboard.getInstance().createTestingDashboard();
